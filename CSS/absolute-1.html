@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; background-color: #fff;}
+    .parent {
+      width: 300px;
+      height: 300px;
+      background: beige;
+      border: 1px solid beige;
+      margin: 50px 0 0 300px;
+      position: relative;
+    }
+    .absolute-box {
+      position: absolute;
+      height: 200px; width: 200px;
+      /* top: 50px; left: 50px; */
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      background: palevioletred;
+      line-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="absolute-box"> 1st box (no parent)</div></body>
+  <div class="parent">
+    <div class="absolute-box">2nd box (in parent)</div>
+  </div>
+  <div class="parent">
+    <div class="absolute-box">3rd box (in parent)</div>
+  </div>
+  </html>
