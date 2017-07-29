@@ -22,7 +22,6 @@ remote origin이 이미 존재하기 때문이다. 따라서 origin 을 지우�
 
 * **해결**  
 이미 로컬 저장소로 지정한 것을 해제하는 명령어는 존재하지 않는다. 그러니 해당 폴더의 .git 폴더를 탐색기 상에서 직접 삭제해야 한다. .git 폴더는 숨김 파일로 되어 있으므로 탐색기의 보기 옵션에서 숨김 파일이 보이게 설정(윈도우)해야 한다. 맥에서는 Finder 또는 데스크탑에서 ```shift``` + ```command``` + ``` . ```키를  누르면 된다.
-![MAC단축키](http://cfile21.uf.tistory.com/image/2738C03E584A3A7B0807C6)
 이렇게하면 .git 폴더를 볼 수 있다. .git 폴더를 삭제하면 Git 로컬 저장소 기능이 삭제된 것을 의미하므로 git 관리에서 벗어날 수 있다.
 ---
 ## (3) Push
@@ -77,7 +76,7 @@ SSH키를 생성하여 계정을 추가로 등록한다.
 **2) 추가하고자 하는 계정으로 [github](https://github.com)에 로그인한다.**
   1. 계정의 Settings로 이동한다.
 
-  2. SSH and GPG keys  SSH keys 메뉴에서 New SSH key 버튼을 클릭한다.
+  2. SSH and GPG keys 메뉴로 간 후 SSH keys 탭에서 **New SSH key** 버튼을 클릭한다.
 
   3. Title을 적당히 입력하고, 위에서 복사한 SSH 공개키를 Key란에 붙여넣기한다. 그리고 Add SSH key 버튼을 누른다.
 
