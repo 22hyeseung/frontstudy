@@ -1,4 +1,4 @@
-## Document
+# Hexo Document
 #### _config.yml
 ```config.yml```은 사이트 구성([configuration](https://hexo.io/docs/configuration.html)) 파일이다. 여기서 대부분의 사이트 설정을 구성할 수 있다.
 
