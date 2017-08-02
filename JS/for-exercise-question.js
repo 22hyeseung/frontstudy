@@ -236,3 +236,29 @@ for (var i = 0; i < line; i++) {
 }
 
 console.log(star);
+
+
+------
+
+for (var i = 0; i < line; i++) {
+  for (var j = 0; j < i + 1; j++) {
+    star += '*';
+  }
+  // 개행
+  star += '\n';
+}
+
+function maketriangle(line){
+  var line = 0;
+  var star = '';
+  
+  //매개변수 line-1의 1/2만큼 앞, 뒤 공백(space)
+  for(var i=0; i<line; i++){
+    for(var j=0; j)
+    space += ' ';
+    
+    for (var j=0; )
+      star += '*';
+    
+  }
+}
