@@ -399,19 +399,22 @@ in Agile
 ## Scrum
 - an iterative and incremental agile software development framework for managing product development
 
+제품 개발 관리를 위한 반복적이고 점진적인 민첩한 소프트웨어 개발 프레임 워크
+
 ---
 ## Scrum
 - The **product owner** represents the stakeholders and is the voice of the customer, who is accountable for ensuring that the team delivers value to the business.
+
+product owner는 이해관계자를 대표하며 팀이 비즈니스 가치를 제공할 책임이 있는 고객의 목소리이다.
+
 - The **development team** is responsible for delivering potentially shippable increments (PSIs) of product at the end of each sprint (the sprint goal).
+
 - facilitated by a **scrum master**, who is accountable for removing impediments to the ability of the team to deliver the product goals and deliverables.
 
 ---
 ## Sprint
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Scrum_process.svg/700px-Scrum_process.svg.png)
-
-
-
-
+일을 블록 단위로 나눈다. 일의 진행 상황을 지속적으로 24시간 단위로 체크하며 업무 효율을 극대화할 수 있는 방식으로 블록을 분배하고 나눈다.
 
 --- 
 ## Planning Poker
