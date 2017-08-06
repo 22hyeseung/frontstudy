@@ -1,7 +1,33 @@
-$my-color: #orange;
+$width: 1000px;
+$color: #333;
+header {
+  width: $width;
+  margin: 0 auto;
+}
 
 #main {
-  h1{
-    color: $my-color;  
+  width: $width;
+  margin: 20px auto;
+  section {
+    p {
+      width: $width/2;
+      height: (500px/2);
+      margin-left: 5px + 8px / 2px;
+      border-radius: 10px (20px / 20px);
+      // font: italic bold (12px/30px) Georgia, serif;
+      color: rgba(225,225,0,0.7) + rgba(0, 0, 220, 0.7);
+      $font-size:12px;
+      $line-height: 30px;
+      font: #{$font-size} / #{$line-height};
+      a:link {
+        color: $color;
+      }
+    }
   }
+}
+
+footer {
+  width: $width;
+  margin: 0 auto;
+  color: $color;
 }
