@@ -1,0 +1,16 @@
+$width: 950px;
+
+#header {
+  width: $width;
+} 
+
+#navber {
+  width: 80%;
+  height: 23px;
+
+  ul { list-style: none; }
+
+  li { float: left;
+       a { font-weight: bold; }
+  }
+}
