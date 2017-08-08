@@ -1,0 +1,10 @@
+{
+  "name": "sass-basic-study",
+  "version": "0.0.1",
+  "description": "package",
+  "scripts": {
+    "start": "npm run sass",
+    "sass": "node-sass -w -r src/sass -o dist/css --output-style expanded --source-map-embed",
+    "sass-build": "node-sass -r src/sass -o dist/css/build --output-style compressed"
+  }
+}
