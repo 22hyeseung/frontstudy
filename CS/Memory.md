@@ -33,12 +33,14 @@ Stack 영역이 클수록 Heap 영역이 작아지고, Heap 영역이 커지면 
 ```javascript
 //자바스크립트의 변수 선언 방식: 동적 타이핑
 var str = 'hello world';
+var word = 'world';
 var num = 11;
 ```
 
 ```java
 //자바의 변수 선언 방식: 정적 타이핑
-String str = 'hello world';
+String str = "hello world";
+char word = 'world';
 int num = 11;
 ```
 
