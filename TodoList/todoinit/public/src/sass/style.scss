@@ -1,0 +1,119 @@
+@import "variables";
+@import "mixin";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  display: block;
+  font: $font-size-default $font-sans;
+  line-height: $line-height;
+  color: $font-color-default;
+  background-color: #fff;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 5%;
+  position: relative;
+}
+
+.header {
+  background: $color-background-header url("../images/header-bg.jpg") 0 0 no-repeat;
+  filter: grayscale(50%);
+  border-radius: $radius $radius 0 0;
+  background-size: cover;
+  @include text-formatting;
+  height: $height-header;
+  &>h1 {
+    line-height: $line-height-title;
+    letter-spacing: $letter-spacing;
+    font-weight: $font-weight-title;
+    font-family: $font-title;
+    font-size: $font-size-title;
+  }
+}
+
+.contents {
+  height: $height-contents;
+  border-radius: 0 0 $radius $radius;
+  background-color: $color-background-wrapper;
+}
+
+.todo-label {
+  font-size: $font-size-default;
+  transform: translateY(25px);
+  transition: all 0.5s;
+}
+
+.input {
+  width: 80%;
+  border: none;
+  outline: none;
+  padding: 8px 0;
+  position: relative;
+  background: transparent;
+  font-size: $font-size-small;
+}
+
+.todo-input-group {
+  display: none;
+  padding: 30px 0 0 0;
+  position: relative;
+  padding: $padding-contents;
+  &:before
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #e2e2e2;
+    bottom: 0;
+    left: 0;
+    transition: all 0.5s;
+  }
+  &:after {
+    background-color: $color-complete;
+    transform: scaleX(0);
+  }
+}
+
+.is-active {
+  &:after {
+    transform: scaleX(1);
+  }
+  .todo-label {
+    color: $color-complete;
+  }
+}
+
+.is-completed {
+  .todo-label {
+    font-size: 12px;
+    transform: translateY(0);
+  }
+}
+
+
+.button {
+  float: right;
+  @include circle;
+  font-size: $font-size-title;
+  color: $font-color-button;
+}
+
+.todo-list-group{
+  padding: $padding-contents;
+  }
+
+.list-title{
+  text-transform: uppercase;
+  font-size: $font-size-small;
+  color: $font-color-contents-sub;
+  letter-spacing: $letter-spacing;
+}
