@@ -1,3 +1,56 @@
+.header {
+  position: relative;
+  height: 300px;
+  background: #64495a url("../images/header-bg3.jpg") 0 0 no-repeat;
+  background-size: cover;
+  border-radius: 12px 12px 0 0;
+  filter: grayscale(60%);
+  padding: 0 5%;
+  text-align: left;
+  text-decoration: none;
+  font-weight: 300;
+  color: #eee;
+  font-family: "Kanit", "Spoqa Han Sans", sans-serif;
+  padding: 4.5%;
+  font-weight: 100;
+}
+
+.header > h1 {
+  position: absolute;
+  top: 15%;
+  font-weight: inherit;
+  line-height: 1.3em;
+  font-size: 48px;
+  letter-spacing: 0.115em;
+  font-size: 48px;
+}
+
+#today {
+  letter-spacing: 0.045em;
+  font-size: 14px;
+  position: absolute;
+  bottom: 12%;
+  left: 5.4%;
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: -7%;
+  width: 100%;
+  height: 18px;
+  overflow: hidden;
+}
+
+.progress-wrap {
+  background: #ccadaf;
+  margin: 20px 0;
+}
+
+.progress-wrap .progress-bar {
+  background: #ddd;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +61,9 @@ body {
   width: 100%;
   height: 100%;
   display: block;
-  font: 18px "Open Sans", "Spoqa Han Sans", sans-serif;
-  line-height: 1.6em;
+  font-size: 18px;
+  font-family: "Spoqa Han Sans", "Spoqa Han Sans JP", sans-serif;
+  line-height: 1.3em;
   color: #000;
   background-color: #fff;
 }
@@ -18,26 +72,6 @@ body {
   width: 90%;
   margin: 5%;
   position: relative;
-}
-
-.header {
-  background: #344557 url("../images/header-bg.jpg") 0 0 no-repeat;
-  filter: grayscale(50%);
-  border-radius: 12px 12px 0 0;
-  background-size: cover;
-  padding: 0 5%;
-  text-align: left;
-  text-decoration: none;
-  font-weight: 300;
-  height: 200px;
-}
-
-.header > h1 {
-  line-height: 160px;
-  letter-spacing: 0.115em;
-  font-weight: 200;
-  font-family: "Biryani", serif;
-  font-size: 30px;
 }
 
 .contents {
@@ -82,7 +116,7 @@ body {
 }
 
 .todo-input-group:after {
-  background-color: #949fdd;
+  background-color: #a59091;
   transform: scaleX(0);
 }
 
@@ -91,7 +125,7 @@ body {
 }
 
 .is-active .todo-label {
-  color: #949fdd;
+  color: #a59091;
 }
 
 .is-completed .todo-label {
@@ -101,14 +135,15 @@ body {
 
 .button {
   float: right;
+  cursor: pointer;
   width: 50px;
   height: 50px;
   margin: 10px;
   border-radius: 50%;
   padding-bottom: 5px;
   border-color: transparent;
-  background-color: #b0e0e6;
-  font-size: 30px;
+  background-color: #ccadaf;
+  font-size: 32px;
   color: #f7f7f7;
 }
 

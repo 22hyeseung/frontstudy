@@ -30,3 +30,10 @@
   list-style: none;
   display: inline-block;
 }
+
+// 미디어쿼리
+@mixin media($queryString) {
+  @media #{$queryString} {
+    @content;
+  }
+}

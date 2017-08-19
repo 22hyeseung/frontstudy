@@ -5,10 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- style sheet -->
   <link rel="stylesheet" href="src/css/style.css">
-  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Biryani:200,300" rel="stylesheet">
+  <!-- font  -->
+  <link href='https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+  <link href='https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300" rel="stylesheet">
   <title>To Do List</title>
 </head>
 
@@ -17,8 +19,11 @@
   <div class="wrapper">
     <!-- header start -->
     <div class="header">
-      <h1>Your Things</h1>
-      <p>Today: 17.08.18 FRI</p>
+      <h1>Your <br> Things</h1>
+      <p id="today"></p>
+      <div class = "progress-wrap progress" data-progress-percent="100">
+        <div class="progress-bar progress"></div>
+      </div>
     </div>
     <!-- header end -->
 
@@ -26,7 +31,7 @@
     <div class="contents">
       <!-- input group -->
       <div class="todo-input-group">
-        <lable for="todo-input" class="todo-label">today's focus</label>
+        <lable for="todo-input" class="todo-label">Today's focus</label>
           <input class="input" type="text" id='todo-input'>
       </div>
       <button class="button">+</button>
@@ -43,6 +48,8 @@
     <!-- contents end -->
   </div>
   <!-- wrapper end -->
+
+  <!-- script  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/index.js"></script>
   <!-- <script src="js/ajax.js"></script> -->
