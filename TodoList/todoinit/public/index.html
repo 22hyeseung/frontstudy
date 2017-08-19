@@ -12,16 +12,37 @@
   <link href='https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300" rel="stylesheet">
   <title>To Do List</title>
+
+  <script>
+    function getRealTime() {
+      var date = new Date();
+      var h = date.getHours();
+      var m = date.getMinutes();
+      var s = date.getSeconds();
+
+      if (h < 10) { h = '0' + h };
+      if (m < 10) { m = '0' + m };
+      if (s < 10) { s = '0' + s };
+
+      document.getElementById('clock').innerHTML = h + ':' + m + ':' + s;
+      setTimeout(getRealTime, 500);
+    }
+  </script>
 </head>
 
-<body>
+<body onload='getRealTime()'>
   <!-- wrapper start -->
   <div class="wrapper">
     <!-- header start -->
     <div class="header">
-      <h1>Your <br> Things</h1>
-      <p id="today"></p>
-      <div class = "progress-wrap progress" data-progress-percent="100">
+      <div class="left-section">
+        <h1>Your <br> Things</h1>
+        <p id="today"></p>
+      </div>
+      <div class="right-section">
+        <div id="clock"></div>
+      </div>
+      <div class="progress-wrap progress" data-progress-percent="100">
         <div class="progress-bar progress"></div>
       </div>
     </div>
@@ -31,7 +52,7 @@
     <div class="contents">
       <!-- input group -->
       <div class="todo-input-group">
-        <lable for="todo-input" class="todo-label">Today's focus</label>
+        <lable for="todo-input" class="todo-label">오늘 할 일:</label>
           <input class="input" type="text" id='todo-input'>
       </div>
       <button class="button">+</button>

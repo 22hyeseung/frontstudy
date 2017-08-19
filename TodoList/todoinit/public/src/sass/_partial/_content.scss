@@ -1,0 +1,80 @@
+.contents {
+  height: $height-contents;
+  border-radius: 0 0 $radius $radius;
+  background-color: $color-background-wrapper;
+}
+
+.todo-label {
+  font-size: $font-size-small;
+  color: $font-color-contents-sub;
+  transform: translateY(25px);
+  transition: all 0.5s;
+}
+
+.input {
+  width: 100%;
+  border-style: none none solid none;
+  border-color: $color-theme;
+  outline: none;
+  padding: 8px 0;
+  position: relative;
+  background: transparent;
+  font-size: $font-size-small;
+
+}
+
+.todo-input-group {
+  display: block;
+  position: relative;
+  padding: $padding-contents;
+  &::before &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #e2e2e2;
+    bottom: 0;
+    left: 0;
+    transition: all 0.5s;
+  }
+  &::after {
+    background-color: $color-complete;
+    transform: scaleX(0);
+  }
+}
+
+.is-active {
+  &::after {
+    transform: scaleX(1);
+  }
+  .todo-label {
+    color: $color-complete;
+  }
+}
+
+.is-completed {
+  .todo-label {
+    font-size: 12px;
+    transform: translateY(0);
+  }
+}
+
+.button {
+  float: right;
+  cursor:pointer;
+  @include circle;
+  font-size: $font-size-default + 14px;
+  color: $font-color-button;
+}
+
+.todo-list-group {
+  padding: $padding-contents;
+}
+
+.list-title {
+  text-transform: uppercase;
+  font-size: $font-size-small;
+  color: $font-color-contents-sub;
+  letter-spacing: $letter-spacing;
+}
