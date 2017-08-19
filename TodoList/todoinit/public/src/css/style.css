@@ -117,7 +117,7 @@ body {
 }
 
 .todo-input-group {
-  display: block;
+  display: none;
   position: relative;
   padding: 2.5%;
 }

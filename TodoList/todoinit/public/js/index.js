@@ -80,6 +80,6 @@ $(".button").mouseout(function () {
   $(this).css('color', '#eee');
 })
 
-// $(".button").click(function () {
-//   $(".todo-input-group").css('display', 'block');
-// })
+$(".button").click(function () {
+  $(".todo-input-group").css('display', 'block');
+})

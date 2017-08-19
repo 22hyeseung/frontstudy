@@ -24,7 +24,7 @@
 }
 
 .todo-input-group {
-  display: block;
+  display: none;
   position: relative;
   padding: $padding-contents;
   &::before &::after {
