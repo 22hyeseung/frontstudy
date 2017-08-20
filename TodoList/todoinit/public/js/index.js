@@ -79,8 +79,30 @@
     $(this).css('color', '#eee');
   })
 
-  $(".button").click(function () {
-    $(".todo-input-group").css('display', 'block');
-    $(".button > i").attr('class', 'fa fa-times');
-  })
+  function btnClickEvent() {
+    // + 버튼 클릭 이벤트
+    function plusBtn() {
+      $(".button").click(function () {
+        $(".todo-input-group").css('display', 'block');
+        $(".button > i").attr('class', 'fa fa-times');
+        $(this).addClass('close-btn');
+        removeBtn();
+      })
+    }
+    // X 버튼 클릭 이벤트
+    function removeBtn() {
+      $(".close-btn").click(function () {
+        $(".todo-input-group").css('display', 'none');
+        $(".button > i").attr('class', 'fa fa-plus');
+        $(this).removeClass('close-btn');
+        plusBtn();
+      })
+    }
+
+    plusBtn();
+  }
+
+btnClickEvent();
+
+
 })(window, document);
