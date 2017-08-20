@@ -7,12 +7,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- style sheet -->
   <link rel="stylesheet" href="src/css/style.css">
+  <!-- icon -->
+  <link rel="stylesheet" href="src/css/icon/font-awesome.css">
   <!-- font  -->
   <link href='https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
   <link href='https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300" rel="stylesheet">
   <title>To Do List</title>
-
+  <!-- clock -->
   <script>
     function getRealTime() {
       var date = new Date();
@@ -52,10 +54,10 @@
     <div class="contents">
       <!-- input group -->
       <div class="todo-input-group">
-        <lable for="todo-input" class="todo-label">오늘 할 일:</label>
-          <input class="input" type="text" id='todo-input'>
+        <lable for="todo-input" class="todo-label"><i class="fa fa-hashtag"></i> 오늘 할 일</label>
+          <input class="input" type="text" id='todo-input' placeholder="What to do?">
       </div>
-      <button class="button">+</button>
+      <button class="button"><i class="fa fa-plus"></i></button>
       <!-- input group end -->
 
       <!-- list group start -->

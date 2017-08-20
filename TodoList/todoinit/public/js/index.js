@@ -57,6 +57,9 @@ function moveProgressBar() {
 }
 
 
+
+//
+
 // jQuery
 // Contents 할 일 입력란 액션
 $(".input").focus(function () {
