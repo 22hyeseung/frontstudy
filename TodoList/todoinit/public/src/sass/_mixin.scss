@@ -1,3 +1,10 @@
+// 미디어쿼리
+@mixin media($queryString) {
+  @media #{$queryString} {
+    @content;
+  }
+}
+
 @mixin circle {
   width: 45px;
   height: 45px;
@@ -6,15 +13,6 @@
   border-color: transparent;
   background-color: $color-theme;
   font-size: $font-size-default;
-}
-
-@mixin absolute-centering {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
 }
 
 @mixin text-formatting {
@@ -31,9 +29,17 @@
   display: inline-block;
 }
 
-// 미디어쿼리
-@mixin media($queryString) {
-  @media #{$queryString} {
-    @content;
-  }
+// 입력창 focus mixin
+@mixin focus($focuseffect) {
+  box-shadow: $focuseffect;
+}
+
+@mixin btn($color) {
+  $color: $color-theme !default;
+  float: right;
+  cursor: pointer;
+  margin: 5px 0;
+  border: none;
+  color: $font-color-button;
+  background: $color;
 }

@@ -57,34 +57,34 @@
 //Contents
 (function (window, document) {
 
-  // 할 일 입력란 액션
+  // 할 일 입력란 focus
   $(".input").focus(function () {
-    $(this).parent().addClass("is-active is-completed");
+    $(this).addClass('focus-on');
+    $(this).removeClass('focus-out');
   });
 
   $(".input").focusout(function () {
-    if ($(this).val() === "")
-      $(this).parent().removeClass("is-completed");
-    $(this).parent().removeClass("is-active");
-  })
+    $(this).addClass('focus-out');
+    $(this).removeClass('focus-on');
+  });
 
-  // 할 일 추가 버튼
-  $(".button").mouseover(function () {
+  // 할 일 입력창 온오프 버튼
+  $("#input-onoff-btn").mouseover(function () {
     $(this).css('background-color', '#333');
     $(this).css('color', '#ccadaf');
-  })
+  });
 
-  $(".button").mouseout(function () {
+  $("#input-onoff-btn").mouseout(function () {
     $(this).css('background-color', '#ccadaf');
     $(this).css('color', '#eee');
-  })
+  });
 
-  function btnClickEvent() {
+  function onoffBtnClick() {
     // + 버튼 클릭 이벤트
     function plusBtn() {
-      $(".button").click(function () {
+      $("#input-onoff-btn").click(function () {
         $(".todo-input-group").css('display', 'block');
-        $(".button > i").attr('class', 'fa fa-times');
+        $("#input-onoff-btn > i").attr('class', 'fa fa-times');
         $(this).addClass('close-btn');
         removeBtn();
       })
@@ -93,7 +93,7 @@
     function removeBtn() {
       $(".close-btn").click(function () {
         $(".todo-input-group").css('display', 'none');
-        $(".button > i").attr('class', 'fa fa-plus');
+        $("#input-onoff-btn > i").attr('class', 'fa fa-plus');
         $(this).removeClass('close-btn');
         plusBtn();
       })
@@ -102,7 +102,6 @@
     plusBtn();
   }
 
-btnClickEvent();
-
+  onoffBtnClick();
 
 })(window, document);

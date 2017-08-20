@@ -53,20 +53,30 @@
     <!-- contents start -->
     <div class="contents">
       <!-- input group -->
+      <!-- <lable for="todo-input" class="todo-label"><i class="fa fa-hashtag"></i> 오늘 할 일</label> -->
       <div class="todo-input-group">
-        <lable for="todo-input" class="todo-label"><i class="fa fa-hashtag"></i> 오늘 할 일</label>
-          <input class="input" type="text" id='todo-input' placeholder="What to do?">
+        <input class="input focus-out" type="text" id='todo-input' placeholder=" What to do?">
+        <button class="button focus-out" id="list-add-btn">submit</button>
       </div>
-      <button class="button"><i class="fa fa-plus"></i></button>
+      <button class="button" id="input-onoff-btn"><i class="fa fa-plus"></i></button>
       <!-- input group end -->
 
       <!-- list group start -->
       <div class="todo-list-group">
         <span class="list-title">Inbox</span>
-        <ul class='todo-list'>
+        <ul class="todo-list">
         </ul>
       </div>
       <!-- list group end -->
+
+      <!-- completed group start -->
+      <div class="completed-group">
+        <span class="list-title">Completed</span>
+        <ul class="completed-list">
+          
+        </ul>
+      </div>
+      <!-- completed group end -->
     </div>
     <!-- contents end -->
   </div>
@@ -75,7 +85,7 @@
   <!-- script  -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/index.js"></script>
-  <!-- <script src="js/ajax.js"></script> -->
+  <script src="js/ajax.js"></script>
 </body>
 
 </html>

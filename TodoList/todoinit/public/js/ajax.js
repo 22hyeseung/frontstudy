@@ -50,14 +50,14 @@
 
   // list item 추가
   function insertItem(element, task, id) {
-    todoList.insertAdjacentHTML('beforeend', '<li class="todo-item">' + task + '<button class= "delete">삭제</button></li>');
+    todoList.insertAdjacentHTML('beforeend', '<li class="todo-item">' + task + '<button class= "button" id="list-del-btn">다 했다!</button></li>');
     bindDeleteButton(id);
   }
 
   // delete 버튼 바인딩
   function bindDeleteButton(id) {
-    var delButton = document.querySelectorAll('.delete');
-    console.log('delButton: ', delButton[delButton.length - 1]);
+    var delButton = document.querySelectorAll('#list-del-btn');
+    // console.log('delButton: ', delButton[delButton.length - 1]);
     delButton[delButton.length - 1].addEventListener('click', function () {
       todoList.removeChild(delButton[delButton.length - 1].parentNode);
       deleteListItem(id);
@@ -65,13 +65,13 @@
   }
 
   var input = document.querySelector('.input');
-  console.log('input: ', input);
-  var button = document.querySelector('.button');
-  console.log('button: ', button);
+  // console.log('input: ', input);
+  var addButton = document.querySelector('#list-add-btn');
+  // console.log('addButton: ', addButton);
   var todoList = document.querySelector('.todo-list');
-  console.log('todoList: ', todoList);
+  // console.log('todoList: ', todoList);
 
-  button.addEventListener('click', addListItem);
+  addButton.addEventListener('click', addListItem);
   input.addEventListener('keyup', addListItem);
   // CRUD create, read, update, delete
   // HTTP method, post, get, put, delete

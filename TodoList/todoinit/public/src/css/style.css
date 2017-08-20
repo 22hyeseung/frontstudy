@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "'Spoqa Han Sans', 'Spoqa Han Sans JP', sans-serif";
   box-sizing: border-box;
 }
 
@@ -8,11 +9,10 @@ body {
   width: 100%;
   height: 100%;
   display: block;
-  font-size: 18px;
-  font-family: "Spoqa Han Sans", "Spoqa Han Sans JP", sans-serif;
-  line-height: 1.3em;
-  color: #000;
   background-color: #fff;
+  line-height: 1.3em;
+  font-size: 18px;
+  color: #000;
 }
 
 .wrapper {
@@ -33,7 +33,7 @@ body {
   text-decoration: none;
   font-weight: 300;
   color: #eee;
-  font-family: "Kanit", "Spoqa Han Sans", sans-serif;
+  font-family: "'Kanit', 'Spoqa Han Sans', sans-serif";
   padding: 4.5%;
   font-weight: 100;
 }
@@ -96,65 +96,78 @@ body {
   height: 480px;
   border-radius: 0 0 12px 12px;
   background-color: rgba(238, 238, 238, 0.6);
-}
-
-.todo-label {
-  font-size: 14px;
-  color: #777;
-  transform: translateY(25px);
-  transition: all 0.5s;
+  overflow: scroll;
 }
 
 .input {
-  width: 100%;
-  border-style: none none solid none;
-  border-color: #ccadaf;
+  width: 80%;
+  height: 30px;
+  border: none;
   outline: none;
-  padding: 8px 0;
+  margin: 5px 0;
+  padding: 1.2%;
   position: relative;
-  background: transparent;
+  border-radius: 12px 0 0 12px;
+  background: rgba(181, 181, 181, 0.2);
   font-size: 14px;
 }
 
+#todo-input::-webkit-input-placeholder {
+  color: rgba(170, 170, 170, 0.8);
+}
+
+#todo-input:-ms-input-placeholder {
+  color: rgba(170, 170, 170, 0.8);
+}
+
+#todo-input::-moz-placeholder {
+  color: rgba(170, 170, 170, 0.8);
+}
+
+#todo-input:-moz-placeholder {
+  color: rgba(170, 170, 170, 0.8);
+}
+
+.focus-on {
+  box-shadow: -1px -1px 10px #ccadaf;
+  background: rgba(224, 204, 206, 0.2);
+}
+
+.focus-out {
+  box-shadow: none;
+}
+
 .todo-input-group {
+  width: 100%;
   display: none;
   position: relative;
   padding: 2.5%;
 }
 
-.todo-input-group::before .todo-input-group::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #e2e2e2;
-  bottom: 0;
-  left: 0;
-  transition: all 0.5s;
-}
-
-.todo-input-group::after {
-  background-color: #a59091;
-  transform: scaleX(0);
-}
-
-.is-active::after {
-  transform: scaleX(1);
-}
-
-.is-active .todo-label {
-  color: #a59091;
-}
-
-.is-completed .todo-label {
-  font-size: 12px;
-  transform: translateY(0);
-}
-
 .button {
   float: right;
   cursor: pointer;
+  margin: 5px 0;
+  border: none;
+  color: #f7f7f7;
+  background: #ccadaf;
+}
+
+#list-del-btn {
+  height: 0px;
+  background: transparent;
+  color: #b88e90;
+  font-size: 14px;
+}
+
+#list-add-btn {
+  width: 20%;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 0 12px 12px 0;
+}
+
+#input-onoff-btn {
   width: 45px;
   height: 45px;
   margin: 10px;
@@ -162,7 +175,6 @@ body {
   border-color: transparent;
   background-color: #ccadaf;
   font-size: 18px;
-  color: #f7f7f7;
 }
 
 .todo-list-group {
@@ -174,4 +186,23 @@ body {
   font-size: 14px;
   color: #777;
   letter-spacing: 0.115em;
+}
+
+.todo-list {
+  margin: 3% 0;
+}
+
+.todo-list li {
+  padding: 0 5%;
+  text-align: left;
+  text-decoration: none;
+  font-weight: 300;
+  list-style: none;
+  margin-top: 2%;
+  padding: 2.5%;
+  font-size: 16px;
+}
+
+.completed-group {
+  padding: 2.5%;
 }
