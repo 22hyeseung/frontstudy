@@ -1,0 +1,73 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>checkbox</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h3>Checked된 checkbox의 수를 alert으로 표시하는 버튼과 모든 체크박스를 on/off로 토글하는 버튼</h3>
+      <div class="exam-1">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox">Option 1
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox">Option 2
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox">Option 3
+          </label>
+        </div>
+      </div>
+      <button id="counter" class="btn btn-default">Checked된 checkbox의 수</button>
+      <button id="toggle" class="btn btn-default">toggle</button>
+    </div>
+
+    <div class="row" style="margin-top: 20px;">
+      <h3>약관 동의가 체크되지 않았을 때, alert으로 약관 동의를 요구</h3>
+      <div class="exam-2">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex officiis necessitatibus voluptate quae perspiciatis
+              voluptatem iste placeat rem molestias! Ipsam temporibus id vitae, sed voluptate deleniti totam incidunt et
+              nobis?
+            </p>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox">약관 동의
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex officiis necessitatibus voluptate quae perspiciatis
+              voluptatem iste placeat rem molestias! Ipsam temporibus id vitae, sed voluptate deleniti totam incidunt et
+              nobis?
+            </p>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox">약관 동의
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="agree-all" class="btn btn-default">모두 동의</button>
+      <button id="confirm" class="btn btn-default">확인</button>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>
