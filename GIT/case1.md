@@ -61,7 +61,7 @@ status에 대한 더 자세한 내용은 [링크](https://git-scm.com/book/ko/v1
 
 ## 4. git add
 
-commit은 내 로컬 디렉터리에서 감지된 변경 사항을 확정하는 것이다. (HEAD에 반영한다고 말한다.) add는 변화가 감지된 파일들 중에서 git에 반영할(commit할) 후보를 선정하여 목록에 올리는 것이다. 메뉴얼에서는 'stage에 올린다'라고 표현한다.
+commit은 내 로컬 디렉터리에서 감지된 변경 사항을 확정하는 것이다. add는 변화가 감지된 파일들 중에서 git에 반영할(commit할) 후보를 선정하여 목록에 올리는 것이다. 메뉴얼에서는 'stage에 올린다'라고 표현한다.
 
 ![출처: https://rogerdudler.github.io/git-guide/index.ko.html](/images/git-tree.png)
 
@@ -101,18 +101,19 @@ $ git commit -m "첫번째 버전"
 
 지금까지는 내 PC에서만 관리 가능한 로컬 저장소를 만들었다. 로컬 저장소만으로는 다른 이들과 프로젝트를 공유할 수 없기 때문에 공동 작업(협업)이 불가하다.
 
-따라서 협업이나 프로젝트의 공유를 위해서는 특정 서버에 git 저장소를 만들고, 서버를 통해 관리할 필요가 있다. 가장 많이 사용되는 github 홈페이지를 통해 git 원격 저장소를 생성할 수 있다.
+따라서 협업이나 프로젝트의 공유를 위해서는 특정 서버에 git 저장소를 만들고, 서버를 통해 관리할 필요가 있다. 가장 많이 사용되는 깃 클라이언트인 github를 통해 git 원격 저장소를 생성해보도록 한다.
 
 ### 1. 계정 만들기
 
 [github.com](github.com)에 접속하여 계정을 생성하고 로그인한다.
 
 ### 2. 원격 저장소 생성하기  
+
 github에 새 프로젝트를 생성하면 원격 저장소가 만들어진다. 아래 예제에서는 test라는 이름의 원격 저장소를 생성하였다.
 
 ![github에 저장소 만들기](/images/8.png)  
 
-readme.md는 저장소의 프로젝트에 대한 설명을 작성하는 용도로 흔히 사용된다. 지금은 있어도 되고, 없어도 크게 상관 없다.
+readme.md는 저장소의 프로젝트에 대한 설명을 작성하는 용도로 흔히 사용된다. 지금은 있어도 되고, 없어도 크게 상관 없다. (만약 readme.md를 만들어서 원격 저장소를 생성하였다면 아래에서 remote 대신 바로 clone하도록 하자. 이유는 아래 설명되어있다.)
 
 ### 3. 로컬 저장소와 원격 저장소 연결하기
 
@@ -139,10 +140,9 @@ $ git remote -v
 ![git remote](/images/git-remote.png)
 
 
----
-`git clone`  
+### git clone
 
-사실 remote 명령을 생략하고 바로 clone 명령을 사용할 수도 있다. clone은 대상이 되는 원격 저장소를 통째로 나의 로컬 저장소(PC)에 복제해온다. 저장소를 clone하면 origin이라는 이름의 리모트 저장소가 자동으로 등록된다. 따라서 remote하는 과정을 생략하고 바로 `git clone 저장소url` 명령을 수행하여도 무방하다.
+remote 명령을 생략하고 바로 clone 명령을 사용할 수도 있다. clone은 대상이 되는 원격 저장소를 통째로 나의 로컬 저장소(PC)에 복제해온다. 이때 커밋 로그도 함께 가져온다. 그리고 저장소를 clone하면 origin이라는 이름의 리모트 저장소가 자동으로 등록된다. 따라서 remote하는 과정을 생략하고 바로 `git clone 저장소url` 명령을 수행할 수 있다.
 
 ---
 
@@ -162,8 +162,8 @@ $ git push --set-upstream origin master
 
 ---
 
-<remote + push 오류>  
-remote 후 바로 push하는 중 발생할 수 있는 오류 몇 가지를 소개한다!  아래와 같은 에러메시지를 만날 수 있다. 
+<push 오류>  
+remote 후 바로 push하는 중 발생할 수 있는 오류를 소개한다!  아래와 같은 에러메시지를 만날 수 있다. 
 
 ```
  ! [rejected]        master -> master (non-fast-forward)
@@ -180,11 +180,11 @@ error: failed to push some refs to 'https://github.com/huusz/test.git'
 
 즉, 오류가 발생하게 된 원인은 github에서 새로운 프로젝트를 생성하면서 만들어진 원격 저장소에 함께 만들어진 readme.md 파일 때문이다. 더 정확히 말하면 readme.md 파일의 존재가 문제가 되는 것이 아니고, 원격 저장소에서 이루어진 readme.md를 추가하는 커밋이 로컬 저장소의 커밋 로그에 없기 때문이다.
 
-push 명령은 로컬 저장소의 commit 목록과 원격 저장소의 commit 목록을 비교한다. 그런 다음 원격 저장소의 마지막 commit id와 동일한 commit id를 가진 로컬 저장소의 commit 시점을 찾아낸 뒤, 원격 저장소의 마지막 커밋과 연결한다. 이제 무엇이 이해가 될 것이다. 원격 저장소의 첫번째이자 마지막 commit인 readme를 추가하는 commit이 원격 저장소에는 존재하지 않고, 따라서 현 상태에서는 둘을 연결할 수 없다.
+push 명령은 로컬 저장소의 commit 목록과 원격 저장소의 commit 목록을 비교한다. 그런 다음 원격 저장소의 마지막 commit id와 동일한 commit id를 가진 로컬 저장소의 commit 시점을 찾아낸 뒤, 원격 저장소의 마지막 커밋과 연결한다. 이제 무엇이 문제인지 이해가 될 것이다. 원격 저장소의 첫번째이자 마지막 commit인 readme를 추가하는 commit이 로컬 저장소에는 존재하지 않고, 따라서 현 상태에서는 둘을 연결할 수 없다.
 
-이 상황을 해결하는 방법은,
+이와 같은 상황에서 할 수 있는 조치는,
 
-1. 원격 저장소를 삭제하고 다시 만들거나, (물론 readme 파일 없이 만들어야 합니다. readme 파일을 함께 생성하면 자동으로 커밋이 생성되기 때문이다.)
+1. 원격 저장소를 삭제하고 다시 만들거나, (물론 readme 파일 없이 만들어야 한다. readme 파일을 함께 생성하면 자동으로 커밋이 생성되기 때문이다.)
 
 2. fetch나 pull 명령으로 원격 저장소의 마지막 커밋을 로컬 저장소 커밋 로그의 맨 앞으로 받아와야 한다.
 
@@ -202,7 +202,7 @@ fetal: refusing to merge unrelated histories
 
 ![pull error](/images/pull-error.png)
 
-에러 내용은 원격 저장소의 master 브랜치에서 로컬 저장소의 FETCH_HEAD를 merge하는 것이 거부되었다. 커밋 히스토리가 서로 관련이 없다. 즉 서로 관련성이 없기 때문에 merge할 수 없다는 것이다. 뒤에서도 설명하겠지만, pull 명령은 fetch + merge 작업을 한번에 처리한다. 현 상황은 fetch는 되었지만, merge가 되지 않은 상태이다.
+원격 저장소(리모트 저장소)의 master 브랜치에서 데이터를 불러와(fetch) 로컬 저장소의 `FETCH_HEAD`에 담아둔 상태에서, 이를 로컬 저장소 master에 병합(merge)하려 하였는데, 병합하는 것이 거부된 상황이다. 커밋 히스토리가 서로 관련이 없다. 즉 서로 관련성이 없기 때문에 merge할 수 없다는 것이다. 뒤에서도 설명하겠지만, pull 명령은 fetch + merge 작업을 한번에 처리한다. 현 상황은 fetch는 되었지만, merge가 되지 않은 상태이다.
 
 기본적으로 merge는 원격 저장소와 로컬 저장소가 공통으로 가지고 있는 commit 지점이 존재해야 한다. 그 지점부터 병합을 시도하기 때문이다. 애초에 공통되는 commit 지점이 존재하지 않아 pull 명령도 사용할 수 없는 것이다. 
 
@@ -210,16 +210,16 @@ fetal: refusing to merge unrelated histories
 
 * fetch는 리모트 저장소에 있는 내용을 가져오지만 자동으로 내 로컬 저장소에 merge하지 않는다. 원격 저장소의 내용을 확인만 하고 로컬에 병합(merge)하고 싶지는 않을 때 fetch를 사용한다.
 
-HEAD에는 가장 마지막에 행해진 commit 정보가 담긴다. 마찬가지로 `FETCH_HEAD`는 리모트 저장소의 가장 최신 commit 이력이 담기게 된다.
+HEAD에는 가장 마지막에 행해진 commit 정보가 담긴다. 더 정확히 말하면 HEAD는 현재 작업중인 워킹디렉터리를 가리키는 포인터이다. checkout 명령을 통해 작업 중인 브랜치를 이동하면 HEAD도 따라서 이동한다. `FETCH_HEAD`는 리모트 저장소가 가장 최근에 작업했던 디렉터리를 가리킨다. 즉 원격 저장소의 가장 최근에 행해진 commit을 가리키는 포인터이다.
 
 `FETCH_HEAD`는 이름 없는 브랜치로 로컬에 가져오게 된다. 이 브랜치는 `FETCH_HEAD`로 checkout도 가능하다.
 
 * pull 명령은 리모트 저장소에 있는 내용을 가져올 뿐 아니라 자동으로 로컬 저장소에 merge한다. 즉, git pull은 git fetch + merge FETCH_HEAD인 셈이다.
 
 
-복잡하고 긴 설명 끝에 결론은 어쨌든 연결되는 **공통된 커밋 포인트가 없다**는 것이다. 
+복잡하고 긴 설명 끝에 결론은 어쨌든 연결되는 **공통적으로 가리키고 있는 커밋 포인트가 없다**는 것이다. 
 
-결국은 clone으로 원격 저장소를 복제해오는 것이 가장 간단하다.
+결국은 clone으로 원격 저장소를 복제해오는 것이 가장 간단한 해결책이다.
 
 ```
 $ git clone 저장소url
@@ -229,10 +229,13 @@ $ git clone 저장소url
 
 > clone은 자동으로 로컬의 master 브랜치가 리모트 저장소의 master 브랜치를 추적하도록 한다. git pull 명령은 clone한 저장소에서 데이터를 가져오고 그 데이터를 자동으로 현재 작업하는 코드와 merge시킨다.
 
+
+
 ---
 Reference
 
 * [git-scm.com](https://git-scm.com/book/ko/v1/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%A6%AC%EB%AA%A8%ED%8A%B8-%EB%B8%8C%EB%9E%9C%EC%B9%98)  
+* [git-scm.com - 브랜치란 무엇인가](https://git-scm.com/book/ko/v2/Git-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%B8%8C%EB%9E%9C%EC%B9%98%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80)  
 * [stack overflow](https://stackoverflow.com/questions/9237348/what-does-fetch-head-in-git-mean)  
 * [git tutorial - fetch](https://backlogtool.com/git-tutorial/kr/stepup/stepup3_2.html)
 
