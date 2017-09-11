@@ -2,31 +2,67 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CRUD Using Ajax and json</title>
+    <% include ./partial/head.ejs %>
 </head>
 
 <body>
   <div class="container">
     <div class="row">
-      <h1>AJAX CRUD using JSON wirh webpack + babel + sass</h1>
-      <form action="submit">
-        <input type="text" name="id" placeholder="아이디를 입력해주세요.">
-        <input type="password" name="password" placeholder="비밀번호를 입력해주세요.">
-        <input type="text" name="firstname" placeholder="이름을 입력해주세요.">
-        <input type="text" name="lastname" placeholder="성을 입력해주세요.">
+      <div class="col s12">
+        <h1 class="center-align">AJAX CRUD using JSON wirh webpack + babel + sass</h1>
+      </div>
+        <form class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" id="userid" class="validate">
+            <label for="userid">ID</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input type="password" id="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" id="firstname" class="validate">
+            <label for="firstname">First Name</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input type="text" id="lastname" class="validate">
+            <label for="lastname">Last Name</label>
+          </div>
+        </div>
       </form>
-      <input type="button" name="get" value="GET" id="get-btn">
-      <input type="button" name="post" value="POST" id="post-btn">
-      <input type="button" name="put" value="PUT" id="put-btn">
-      <input type="button" name="delete" value="DELETE" id="del-btn">
-      <div id="viewer" style="border: 1px solid black; height: 300px;">
+    </div>
+
+    <div class="row center-align">
+      <div class="col s3">
+        <a class="waves-effect waves-light btn flow-text" id="get-btn">GET</a>
+      </div>
+      <div class="col s3">
+        <a class="waves-effect waves-light btn flow-text" id="post-btn">POST</a>
+      </div>
+      <div class="col s3">
+        <a class="waves-effect waves-light btn flow-text" id="put-btn">PUT</a>
+      </div>
+      <div class="col s3">
+        <a class="waves-effect waves-light btn flow-text" id="del-btn">DELETE</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <div class="card-panel view-wrap">
+          <span id="viewer" class="flow-text">
+          </span>
+        </div>
       </div>
     </div>
   </div>
-  <script src='js/app.bundle.js'></script>
+  <% include ./partial/script.ejs %>
 </body>
 
 </html>

@@ -30,13 +30,13 @@ module.exports = (app, fs, dbPath) => {
       // Add data
       json.users.push(req.body);
 
+      // Create user
       fs.writeFile(dbPath, JSON.stringify(json, null, '\t'), 'utf8', (err) => {
         if (err) throw err;
 
         result.success = true;
         res.json(result);
       });
-      // Create user
     });
   });
 };

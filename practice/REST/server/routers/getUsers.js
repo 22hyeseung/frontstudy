@@ -5,7 +5,7 @@ module.exports = (app, fs, dbPath) => {
       if (err) throw err;
 
       const { users } = JSON.parse(data); // 데이터 배열이 들어온다.
-      return res.json(users);
+      res.json(users);
     });
   });
 };

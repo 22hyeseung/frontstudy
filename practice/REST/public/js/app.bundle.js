@@ -9021,41 +9021,138 @@ module.exports = function (regExp, replace) {
 "use strict";
 
 
+var userid = document.getElementById('userid');
+var password = document.getElementById('password');
+var firstname = document.getElementById('firstname');
+var lastname = document.getElementById('lastname');
+
 var getBtn = document.getElementById('get-btn');
 var postBtn = document.getElementById('post-btn');
 var putBtn = document.getElementById('put-btn');
 var delBtn = document.getElementById('del-btn');
 
 var viewer = document.getElementById('viewer');
-var req = new XMLHttpRequest();
+var xhr = new XMLHttpRequest();
+
+function inputClear() {
+  userid.value = '';
+  password.value = '';
+  firstname.value = '';
+  lastname.value = '';
+}
 
 // get
 
-function getUser() {
-  req.open('GET', '/users', true);
-  req.setRequestHeader('Accept', 'application/json');
-  req.send(null);
+function getUserList() {
+  xhr.open('GET', '/users', true);
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.send(null);
 
-  req.onreadystatechange = function () {
-    if (req.readyState === req.DONE) {
-      if (req.status === 200) {
-        // console.log('response text: ' + req.responseText);
-        viewer.innerHTML = req.responseText;
-      } else {
-        // viewer.innerHTML = 'GET failed!';
-        console.log('GET failed!');
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        // console.log('response text: ' + xhr.responseText);
+        viewer.innerHTML = xhr.responseText;
       }
     }
   };
 }
 
-getBtn.addEventListener('click', getUser);
+function getUser() {
+  var path = '/users/' + userid.value;
+  xhr.open('GET', path, true);
+  xhr.setRequestHeader('Accept', 'application/json');
+  xhr.send(null);
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        // console.log('response text: ' + xhr.responseText);
+        viewer.innerHTML = xhr.responseText;
+      }
+    }
+  };
+}
+
+getBtn.addEventListener('click', function () {
+  if (!userid.value) getUserList();else getUser();
+  inputClear();
+});
 
 // post
 
 function addUser() {
-  var id = req.responseText.req.open('POST', '/users/' + id, true);
+  xhr.open('POST', '/users', true);
+  xhr.setRequestHeader('Content-type', 'application/json');
+  var userdata = {
+    userid: userid.value,
+    password: password.value,
+    firstname: firstname.value,
+    lastname: lastname.value
+  };
+  xhr.send(JSON.stringify(userdata));
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 201) {
+        viewer.innerHTML = xhr.responseText; // 문구 안 나옴..
+        // console.log(xhr.responseText);
+      }
+    }
+  };
 }
+
+postBtn.addEventListener('click', function () {
+  addUser();
+  inputClear();
+});
+
+// put
+
+function updateUser() {
+  var path = '/users/' + userid.value;
+  xhr.open('PUT', path, true);
+  xhr.setRequestHeader('Content-type', 'application/json');
+  var newdata = {
+    userid: userid.value,
+    password: password.value,
+    firstname: firstname.value,
+    lastname: lastname.value
+  };
+  xhr.send(JSON.stringify(newdata));
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        viewer.innerHTML = xhr.responseText;
+      } else if (xhr.status === 204) {
+        console.log('데이터가 없습니다.');
+      }
+    }
+  };
+}
+
+putBtn.addEventListener('click', function () {
+  updateUser();
+  inputClear();
+});
+
+function deleteUser() {
+  var path = '/users/' + userid.value;
+  xhr.open('DELETE', path, true);
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(null);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        viewer.innerHTML = xhr.responseText;
+      }
+    }
+  };
+}
+
+delBtn.addEventListener('click', function () {
+  deleteUser();
+  inputClear();
+});
 
 /***/ }),
 /* 328 */

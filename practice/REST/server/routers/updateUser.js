@@ -32,7 +32,7 @@ module.exports = (app, fs, dbPath) => {
       });
 
       // Update JSON File
-      fs.writeFile(dbPath, JSON.stringify(json, null, 2), 'utf8', (err) => {
+      fs.writeFile(dbPath, JSON.stringify(json, null, '\t'), 'utf8', (err) => {
         if (err) throw err;
 
         result.success = true;

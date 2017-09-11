@@ -1,4 +1,27 @@
+@import "partial/_variable";
+
 body {
-  font-family: 'RobotoNormal', Helvetica, Arial, sans-serif;
+  font-family: $font-sans;
+  color: $color-font;
   -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: $font-size-XXL;
+}
+
+.btn {
+  background: $color-main;
+  font-size: $font-size-R;
+  width: 150px;
+}
+
+.btn:hover {
+  background: $color-main-suv;
+}
+
+.view-wrap {
+  height: 240px;
+  overflow: auto;
 }

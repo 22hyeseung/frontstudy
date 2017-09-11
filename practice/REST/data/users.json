@@ -11,6 +11,12 @@
       "password": "1234",
       "first-name": "bar",
       "last-name": "Kim"
+    },
+    {
+      "userid": "goo",
+      "password": "1234",
+      "firstname": "hy",
+      "lastname": "youn"
     }
   ]
 }
