@@ -9021,6 +9021,12 @@ module.exports = function (regExp, replace) {
 "use strict";
 
 
+var _ajax = __webpack_require__(329);
+
+var _ajax2 = _interopRequireDefault(_ajax);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var userid = document.getElementById('userid');
 var password = document.getElementById('password');
 var firstname = document.getElementById('firstname');
@@ -9033,7 +9039,7 @@ var delBtn = document.getElementById('del-btn');
 
 var viewer = document.getElementById('viewer');
 
-var xhr = new XMLHttpRequest();
+// const xhr = new XMLHttpRequest();
 
 function clear() {
   userid.value = '';
@@ -9043,69 +9049,87 @@ function clear() {
   viewer.innerHTML = '';
 }
 
-function xhrRequest() {
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === xhr.DONE) {
-      if (xhr.status === 200) {
-        viewer.innerHTML = xhr.responseText;
-      } else {
-        console.log('error!');
-      }
-    }
-  };
+// function xhrRequest() {
+//   xhr.onreadystatechange = function () {
+//     if (xhr.readyState === xhr.DONE) {
+//       if (xhr.status === 200) {
+//         viewer.innerHTML = xhr.responseText;
+//       } else {
+//         console.log('error!');
+//       }
+//     }
+//   };
+// }
+
+function render(data) {
+  viewer.innerHTML = data;
 }
 
 // get
 
 function getUserList() {
-  xhr.open('GET', '/users');
-  xhr.send();
-  xhrRequest();
+  // xhr.open('GET', '/users');
+  // xhr.send();
+  // xhrRequest();
+  _ajax2.default.get('/users').then(function (data) {
+    console.log(data);
+    render(data);
+  });
 }
 
 function getUser() {
   var path = '/users/' + userid.value;
-  xhr.open('GET', path);
-  xhr.send();
-  xhrRequest();
+  // xhr.open('GET', path);
+  // xhr.send();
+  // xhrRequest();
+  _ajax2.default.get(path).then(function (data) {
+    render(data);
+  });
 }
 
 // post
 
 function addUser() {
-  xhr.open('POST', '/users');
-  xhr.setRequestHeader('Content-type', 'application/json');
+  // xhr.open('POST', '/users');
+  // xhr.setRequestHeader('Content-type', 'application/json');
   var userdata = {
     userid: userid.value,
     password: password.value,
     firstname: firstname.value,
     lastname: lastname.value
   };
-  xhr.send(JSON.stringify(userdata));
-  xhrRequest();
+  // xhr.send(JSON.stringify(userdata));
+  // xhrRequest();
+  _ajax2.default.post('/users', userdata).then(function (data) {
+    render(data);
+  });
 }
 
 // put
 
 function updateUser() {
   var path = '/users/' + userid.value;
-  xhr.open('PUT', path);
-  xhr.setRequestHeader('Content-type', 'application/json');
+  // xhr.open('PUT', path);
+  // xhr.setRequestHeader('Content-type', 'application/json');
   var newdata = {
     userid: userid.value,
     password: password.value,
     firstname: firstname.value,
     lastname: lastname.value
   };
-  xhr.send(JSON.stringify(newdata));
-  xhrRequest();
+  // xhr.send(JSON.stringify(newdata));
+  // xhrRequest();
+  _ajax2.default.put(path, newdata).then(render);
 }
 
 function deleteUser() {
   var path = '/users/' + userid.value;
-  xhr.open('DELETE', path);
-  xhr.send();
-  xhrRequest();
+  // xhr.open('DELETE', path);
+  // xhr.send();
+  // xhrRequest();
+  _ajax2.default.delete(path).then(function (data) {
+    render(data);
+  });
 }
 
 getBtn.addEventListener('click', function () {
@@ -9133,6 +9157,95 @@ delBtn.addEventListener('click', function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 329 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Ajax = function () {
+  function Ajax() {
+    _classCallCheck(this, Ajax);
+  }
+
+  _createClass(Ajax, null, [{
+    key: 'get',
+    value: function get(url) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) resolve(xhr.response);else reject(xhr.statusText);
+          }
+        };
+      });
+    }
+  }, {
+    key: 'post',
+    value: function post(url, data) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) resolve(xhr.response);else reject(xhr.statusText);
+          }
+        };
+      });
+    }
+  }, {
+    key: 'put',
+    value: function put(url, data) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('PUT', url);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) resolve(xhr.response);else reject(xhr.statusText);
+          }
+        };
+      });
+    }
+  }, {
+    key: 'delete',
+    value: function _delete(url) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', url);
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) resolve(xhr.response);else reject(xhr.statusText);
+          }
+        };
+      });
+    }
+  }]);
+
+  return Ajax;
+}();
+
+exports.default = Ajax;
 
 /***/ })
 /******/ ]);
