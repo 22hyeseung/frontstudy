@@ -22,7 +22,7 @@ function clear() {
 
 function xhrRequest() {
   xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
+    if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
         viewer.innerHTML = xhr.responseText;
       } else {
@@ -31,6 +31,7 @@ function xhrRequest() {
     }
   };
 }
+
 
 // get
 
@@ -85,24 +86,23 @@ function deleteUser() {
   xhrRequest();
 }
 
-
-getBtn.addEventListener('click', () => {
+getBtn.addEventListener('click', function () {
   if (!userid.value) getUserList();
   else getUser();
   clear();
 });
 
-postBtn.addEventListener('click', () => {
+postBtn.addEventListener('click', function () {
   addUser();
   clear();
 });
 
-putBtn.addEventListener('click', () => {
+putBtn.addEventListener('click', function () {
   updateUser();
   clear();
 });
 
-delBtn.addEventListener('click', () => {
+delBtn.addEventListener('click', function () {
   deleteUser();
   clear();
 });

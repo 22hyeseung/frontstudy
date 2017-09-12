@@ -9045,7 +9045,7 @@ function clear() {
 
 function xhrRequest() {
   xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
+    if (xhr.readyState === xhr.DONE) {
       if (xhr.status === 200) {
         viewer.innerHTML = xhr.responseText;
       } else {
