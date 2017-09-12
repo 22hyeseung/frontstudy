@@ -25,3 +25,9 @@ h1 {
   height: 240px;
   overflow: auto;
 }
+
+.warning-label {
+  color: red;
+  font-size: $font-size-S;
+  background-color: #eee;
+}

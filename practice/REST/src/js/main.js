@@ -10,6 +10,8 @@ const postBtn = document.getElementById('post-btn');
 const putBtn = document.getElementById('put-btn');
 const delBtn = document.getElementById('del-btn');
 
+const warningLabel = document.querySelector('.warning-label');
+
 const viewer = document.getElementById('viewer');
 
 // const xhr = new XMLHttpRequest();
@@ -45,7 +47,7 @@ function getUserList() {
   // xhr.send();
   // xhrRequest();
   AJAX.get('/users').then((data) => {
-    console.log(data);
+    // console.log(data);
     render(data);
   });
 }
@@ -71,11 +73,31 @@ function addUser() {
     firstname: firstname.value,
     lastname: lastname.value
   };
-  // xhr.send(JSON.stringify(userdata));
-  // xhrRequest();
-  AJAX.post('/users', userdata).then((data) => {
-    render(data);
-  });
+
+  // validation check
+  warningLabel.innerHTML = '';
+
+  if (!userdata.userid) {
+    // 아이디를 입력해주세요.
+    warningLabel.innerHTML = '아이디 입력은 필수입니다.';
+  }
+
+  // 이메일 형식인지 검사하는 정규표현식
+  const valid = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+  // 이메일 형식에 맞지 않으면,
+  if (!valid.test(userdata.userid)) {
+    // 아이디를 입력해주세요.
+    warningLabel.innerHTML = '아이디 입력은 필수입니다.';
+  } else {
+    // 이메일 형식에 맞으면,
+    // xhr.send(JSON.stringify(userdata));
+    // xhrRequest();
+    // post 요청을 보낸다.
+    AJAX.post('/users', userdata).then((data) => {
+      render(data);
+    });
+  }
 }
 
 // put
