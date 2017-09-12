@@ -9,59 +9,48 @@ const putBtn = document.getElementById('put-btn');
 const delBtn = document.getElementById('del-btn');
 
 const viewer = document.getElementById('viewer');
+
 const xhr = new XMLHttpRequest();
 
-function inputClear() {
+function clear() {
   userid.value = '';
   password.value = '';
   firstname.value = '';
   lastname.value = '';
+  viewer.innerHTML = '';
+}
+
+function xhrRequest() {
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        viewer.innerHTML = xhr.responseText;
+      } else {
+        console.log('error!');
+      }
+    }
+  };
 }
 
 // get
 
 function getUserList() {
-  xhr.open('GET', '/users', true);
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.send(null);
-
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        // console.log('response text: ' + xhr.responseText);
-        viewer.innerHTML = xhr.responseText;
-      }
-    }
-  };
+  xhr.open('GET', '/users');
+  xhr.send();
+  xhrRequest();
 }
 
 function getUser() {
   const path = '/users/' + userid.value;
-  xhr.open('GET', path, true);
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.send(null);
-
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        // console.log('response text: ' + xhr.responseText);
-        viewer.innerHTML = xhr.responseText;
-      }
-    }
-  };
+  xhr.open('GET', path);
+  xhr.send();
+  xhrRequest();
 }
-
-getBtn.addEventListener('click', () => {
-  if (!userid.value) getUserList();
-  else getUser();
-  inputClear();
-});
-
 
 // post
 
 function addUser() {
-  xhr.open('POST', '/users', true);
+  xhr.open('POST', '/users');
   xhr.setRequestHeader('Content-type', 'application/json');
   const userdata = {
     userid: userid.value,
@@ -70,27 +59,14 @@ function addUser() {
     lastname: lastname.value
   };
   xhr.send(JSON.stringify(userdata));
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 201) {
-        viewer.innerHTML = xhr.responseText; // 문구 안 나옴..
-        // console.log(xhr.responseText);
-      }
-    }
-  };
+  xhrRequest();
 }
-
-postBtn.addEventListener('click', () => {
-  addUser();
-  inputClear();
-});
-
 
 // put
 
 function updateUser() {
   const path = '/users/' + userid.value;
-  xhr.open('PUT', path, true);
+  xhr.open('PUT', path);
   xhr.setRequestHeader('Content-type', 'application/json');
   const newdata = {
     userid: userid.value,
@@ -99,37 +75,34 @@ function updateUser() {
     lastname: lastname.value
   };
   xhr.send(JSON.stringify(newdata));
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        viewer.innerHTML = xhr.responseText;
-      } else if (xhr.status === 204) {
-        console.log('데이터가 없습니다.');
-      }
-    }
-  }
+  xhrRequest();
 }
-
-putBtn.addEventListener('click', () => {
-  updateUser();
-  inputClear();
-});
 
 function deleteUser() {
   const path = '/users/' + userid.value;
-  xhr.open('DELETE', path, true);
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(null);
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        viewer.innerHTML = xhr.responseText;
-      }
-    }
-  };
+  xhr.open('DELETE', path);
+  xhr.send();
+  xhrRequest();
 }
+
+
+getBtn.addEventListener('click', () => {
+  if (!userid.value) getUserList();
+  else getUser();
+  clear();
+});
+
+postBtn.addEventListener('click', () => {
+  addUser();
+  clear();
+});
+
+putBtn.addEventListener('click', () => {
+  updateUser();
+  clear();
+});
 
 delBtn.addEventListener('click', () => {
   deleteUser();
-  inputClear();
+  clear();
 });

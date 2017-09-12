@@ -9032,57 +9032,48 @@ var putBtn = document.getElementById('put-btn');
 var delBtn = document.getElementById('del-btn');
 
 var viewer = document.getElementById('viewer');
+
 var xhr = new XMLHttpRequest();
 
-function inputClear() {
+function clear() {
   userid.value = '';
   password.value = '';
   firstname.value = '';
   lastname.value = '';
+  viewer.innerHTML = '';
+}
+
+function xhrRequest() {
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        viewer.innerHTML = xhr.responseText;
+      } else {
+        console.log('error!');
+      }
+    }
+  };
 }
 
 // get
 
 function getUserList() {
-  xhr.open('GET', '/users', true);
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.send(null);
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        // console.log('response text: ' + xhr.responseText);
-        viewer.innerHTML = xhr.responseText;
-      }
-    }
-  };
+  xhr.open('GET', '/users');
+  xhr.send();
+  xhrRequest();
 }
 
 function getUser() {
   var path = '/users/' + userid.value;
-  xhr.open('GET', path, true);
-  xhr.setRequestHeader('Accept', 'application/json');
-  xhr.send(null);
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        // console.log('response text: ' + xhr.responseText);
-        viewer.innerHTML = xhr.responseText;
-      }
-    }
-  };
+  xhr.open('GET', path);
+  xhr.send();
+  xhrRequest();
 }
-
-getBtn.addEventListener('click', function () {
-  if (!userid.value) getUserList();else getUser();
-  inputClear();
-});
 
 // post
 
 function addUser() {
-  xhr.open('POST', '/users', true);
+  xhr.open('POST', '/users');
   xhr.setRequestHeader('Content-type', 'application/json');
   var userdata = {
     userid: userid.value,
@@ -9091,26 +9082,14 @@ function addUser() {
     lastname: lastname.value
   };
   xhr.send(JSON.stringify(userdata));
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 201) {
-        viewer.innerHTML = xhr.responseText; // 문구 안 나옴..
-        // console.log(xhr.responseText);
-      }
-    }
-  };
+  xhrRequest();
 }
-
-postBtn.addEventListener('click', function () {
-  addUser();
-  inputClear();
-});
 
 // put
 
 function updateUser() {
   var path = '/users/' + userid.value;
-  xhr.open('PUT', path, true);
+  xhr.open('PUT', path);
   xhr.setRequestHeader('Content-type', 'application/json');
   var newdata = {
     userid: userid.value,
@@ -9119,39 +9098,34 @@ function updateUser() {
     lastname: lastname.value
   };
   xhr.send(JSON.stringify(newdata));
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        viewer.innerHTML = xhr.responseText;
-      } else if (xhr.status === 204) {
-        console.log('데이터가 없습니다.');
-      }
-    }
-  };
+  xhrRequest();
 }
-
-putBtn.addEventListener('click', function () {
-  updateUser();
-  inputClear();
-});
 
 function deleteUser() {
   var path = '/users/' + userid.value;
-  xhr.open('DELETE', path, true);
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(null);
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        viewer.innerHTML = xhr.responseText;
-      }
-    }
-  };
+  xhr.open('DELETE', path);
+  xhr.send();
+  xhrRequest();
 }
+
+getBtn.addEventListener('click', function () {
+  if (!userid.value) getUserList();else getUser();
+  clear();
+});
+
+postBtn.addEventListener('click', function () {
+  addUser();
+  clear();
+});
+
+putBtn.addEventListener('click', function () {
+  updateUser();
+  clear();
+});
 
 delBtn.addEventListener('click', function () {
   deleteUser();
-  inputClear();
+  clear();
 });
 
 /***/ }),
