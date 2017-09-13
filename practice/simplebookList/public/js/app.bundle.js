@@ -9034,7 +9034,9 @@ var tbody = document.querySelector('tbody');
 var addBtn = document.querySelector('#add-btn');
 var editBtn = document.querySelector('#del-btn');
 
-// bookList를 그려주는 render 함수
+// =============================================
+// 함수
+// (1) bookList를 그려주는 기능
 function render(data) {
   // 리스트 초기화
   tbody.innerHTML = '';
@@ -9044,34 +9046,97 @@ function render(data) {
   });
 }
 
-// 첫 페이지
+// (2) 새 리스트 항목 추가 기능
+function appendInput(id) {
+  // const id = length + 1;
+  // tbody의 마지막 엘리먼트로 추가한다.
+  tbody.insertAdjacentHTML('beforeend', '<tr>\n    <th>' + id + '</th>\n    <td><input class="validate" type="text" id="title" placeholder="\uCC45 \uC81C\uBAA9\uC744 \uC785\uB825\uD558\uC138\uC694."></td>\n    <td><input class="validate" type="text" id="author" placeholder="\uC800\uC790\uB97C \uC785\uB825\uD558\uC138\uC694."></td>\n    <td><input class="validate" type="text" id="price" placeholder="\uAC00\uACA9\uC744 \uC785\uB825\uD558\uC138\uC694."></td>\n    <td>  \n      <a class="waves-effect waves-gray btn-flat" id="submit-btn" data-item="' + id + '" data-type="submit">\n        <i class="medium material-icons">done</i>\n      </a>\n      <a class="waves-effect waves-gray btn-flat" id="cancel-btn" data-item="' + id + '" data-type="cancel">\n        <i class="medium material-icons">cancel</i>\n      </a>\n      <a class="waves-effect waves-gray btn-flat" id="del-btn" data-item="' + id + '" data-type="delete">\n        <i class="medium material-icons">delete</i>\n      </a>\n    </td>\n    </tr>');
+}
+
+// (3) 새 아이템 추가 기능
+function addItem(inputData) {
+  // post해서 받은 데이터를 추가한다.
+  _ajax2.default.post('/books', inputData).then(function (data) {
+    render(JSON.parse(data));
+  });
+}
+
+// (4) 기존 아이템 업데이트 기능
+function updateItem(inputData, id) {
+  var path = '/books' + id;
+  _ajax2.default.put(path, inputData).then(function (data) {
+    render(JSON.parse(data));
+  });
+}
+
+// =============================================
+// 화면
+// 1. 첫 페이지: 북리스트
 _ajax2.default.get('/books').then(function (data) {
   // console.log(JSON.parse(data));
   render(JSON.parse(data));
 });
 
-// 아이템(book) 추가
-
-// add버튼을 누르면 input 리스트가 추가로 생성된다.
+// 2. 리스트에 아이템(book) 추가
 addBtn.addEventListener('click', function () {
-  // 리스트의 길이 = tr의 갯수 = tbody의 자식 노드 갯수
+  // 현재 리스트 아이템 갯수 = tr의 갯수
   var length = tbody.childElementCount;
   var id = length + 1;
-  // tbody의 마지막 엘리먼트로 추가한다.
-  tbody.insertAdjacentHTML('beforeend', '<tr>\n  <th>' + id + '</th>\n  <td><input type="text" id="title" placeholder="\uCC45 \uC81C\uBAA9\uC744 \uC785\uB825\uD558\uC138\uC694."></td>\n  <td><input type="text" id="author" placeholder="\uC800\uC790\uB97C \uC785\uB825\uD558\uC138\uC694."></td>\n  <td><input type="text" id="price" placeholder="\uAC00\uACA9\uC744 \uC785\uB825\uD558\uC138\uC694."></td>\n  <td>  \n    <a class="waves-effect waves-gray btn-flat" id="submit-btn">\n      <i class="medium material-icons">done</i>\n    </a>\n    <a class="waves-effect waves-gray btn-flat" id="cancel-btn">\n      <i class="medium material-icons">cancel</i>\n    </a>\n    <a class="waves-effect waves-gray btn-flat" id="del-btn">\n      <i class="medium material-icons">delete</i>\n    </a>\n  </td>\n  </tr>');
+  appendInput(id);
 });
 
 tbody.addEventListener('click', function (e) {
   if (!e.target || e.target.nodeName !== 'BUTTON') return;
+  // 이벤트 걸어줄 대상이 되는 버튼과 데이터 ID
+  var tragetID = e.target.dataset.item * 1;
+
+  // 클릭 이벤트에서만 생기는 버튼
+  var submitBtn = document.querySelector('#submit-btn');
+  var cancelBtn = document.querySelector('#cancel-btn');
+
+  // 사용자가 입력한 input값
+  var title = document.querySelector('#title');
+  var author = document.querySelector('#author');
+  var price = document.querySelector('#price');
+
+  var inputData = { title: title, author: author, price: price };
+  inputData.editable = false;
+
+  // 2-1. submit을 누르는 경우
+  submitBtn.addEventListener('click', function () {
+    // 첫 생성인 경우
+    if (!inputData.editable) {
+      inputData.status = 'new';
+      inputData.editable = true;
+      // post
+      addItem(inputData);
+    } else {
+      // 수정인 경우
+      inputData.status = 'edited';
+      // put
+      updateItem(inputData, tragetID);
+    }
+  });
+  // 2-2. cancel을 누르는 경우
+  cancelBtn.addEventListener('click', function () {
+    // 첫 생성인 경우
+    if (!inputData.editable) {
+      // 해당 리스트 삭제
+    } else {// 수정인 경우
+        // 실행 취소
+      }
+  });
 });
 
-// 사용자가 입력한 input값을 데이터로 받는다.
+// 3. 리스트의 아이템 편집(수정)
 
-// const inputData = 
+// 4. 리스트의 아이템 삭제
 
-// post해서 받은 데이터를 추가한다.
-// AJAX.post('/books', newData).then((data) => {
-//   render(JSON.parse(data));
+// tbody.addEventListener('click', (e) => {
+//   if (!e.target || e.target.nodeName !== 'BUTTON') return;
+
+//   const tragetID = e.target.dataset.item * 1;
+
 // });
 
 /***/ }),
