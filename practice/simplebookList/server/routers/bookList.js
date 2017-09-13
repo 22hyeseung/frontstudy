@@ -8,5 +8,5 @@ module.exports = (app, fs, dbPath) => {
       res.json(books);
     });
   });
-}
+};
 

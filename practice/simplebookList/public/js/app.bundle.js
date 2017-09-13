@@ -3702,7 +3702,7 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 
 __webpack_require__(125);
 __webpack_require__(327);
-module.exports = __webpack_require__(328);
+module.exports = __webpack_require__(329);
 
 
 /***/ }),
@@ -9021,8 +9021,150 @@ module.exports = function (regExp, replace) {
 "use strict";
 
 
+var _ajax = __webpack_require__(328);
+
+var _ajax2 = _interopRequireDefault(_ajax);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// 테이블
+var tbody = document.querySelector('tbody');
+
+// 버튼
+var addBtn = document.querySelector('#add-btn');
+var editBtn = document.querySelector('#del-btn');
+
+// bookList를 그려주는 render 함수
+function render(data) {
+  // 리스트 초기화
+  tbody.innerHTML = '';
+  // 전체 리스트 조회
+  data.forEach(function (item) {
+    tbody.innerHTML += '<tr>\n    <th>' + item.id + '</th>\n    <td>' + item.title + '</td>\n    <td>' + item.author + '</td>\n    <td>' + item.price + '</td>\n    <td>  \n      <a class="waves-effect waves-gray btn-flat" id="edit-btn">\n        <i class="medium material-icons" data-item="' + item.id + '" data-type="edit" >mode_edit</i>\n      </a>\n      <a class="waves-effect waves-gray btn-flat" id="del-btn">\n        <i class="medium material-icons data-item="' + item.id + '" data-type="delete">delete</i>\n      </a>\n    </td>\n    </tr>';
+  });
+}
+
+// 첫 페이지
+_ajax2.default.get('/books').then(function (data) {
+  // console.log(JSON.parse(data));
+  render(JSON.parse(data));
+});
+
+// 아이템(book) 추가
+
+// add버튼을 누르면 input 리스트가 추가로 생성된다.
+addBtn.addEventListener('click', function () {
+  // 리스트의 길이 = tr의 갯수 = tbody의 자식 노드 갯수
+  var length = tbody.childElementCount;
+  var id = length + 1;
+  // tbody의 마지막 엘리먼트로 추가한다.
+  tbody.insertAdjacentHTML('beforeend', '<tr>\n  <th>' + id + '</th>\n  <td><input type="text" id="title" placeholder="\uCC45 \uC81C\uBAA9\uC744 \uC785\uB825\uD558\uC138\uC694."></td>\n  <td><input type="text" id="author" placeholder="\uC800\uC790\uB97C \uC785\uB825\uD558\uC138\uC694."></td>\n  <td><input type="text" id="price" placeholder="\uAC00\uACA9\uC744 \uC785\uB825\uD558\uC138\uC694."></td>\n  <td>  \n    <a class="waves-effect waves-gray btn-flat" id="submit-btn">\n      <i class="medium material-icons">done</i>\n    </a>\n    <a class="waves-effect waves-gray btn-flat" id="cancel-btn">\n      <i class="medium material-icons">cancel</i>\n    </a>\n    <a class="waves-effect waves-gray btn-flat" id="del-btn">\n      <i class="medium material-icons">delete</i>\n    </a>\n  </td>\n  </tr>');
+});
+
+tbody.addEventListener('click', function (e) {
+  if (!e.target || e.target.nodeName !== 'BUTTON') return;
+});
+
+// 사용자가 입력한 input값을 데이터로 받는다.
+
+// const inputData = 
+
+// post해서 받은 데이터를 추가한다.
+// AJAX.post('/books', newData).then((data) => {
+//   render(JSON.parse(data));
+// });
+
 /***/ }),
 /* 328 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Ajax = function () {
+  function Ajax() {
+    _classCallCheck(this, Ajax);
+  }
+
+  _createClass(Ajax, null, [{
+    key: 'get',
+    value: function get(url) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) resolve(xhr.response);else reject(xhr.statusText);
+          }
+        };
+      });
+    }
+  }, {
+    key: 'post',
+    value: function post(url, data) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) resolve(xhr.response);else reject(xhr.statusText);
+          }
+        };
+      });
+    }
+  }, {
+    key: 'put',
+    value: function put(url, data) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('PUT', url);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.send(data);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) resolve(xhr.response);else reject(xhr.statusText);
+          }
+        };
+      });
+    }
+  }, {
+    key: 'delete',
+    value: function _delete(url) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('DELETE', url);
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) resolve(xhr.response);else reject(xhr.statusText);
+          }
+        };
+      });
+    }
+  }]);
+
+  return Ajax;
+}();
+
+exports.default = Ajax;
+
+/***/ }),
+/* 329 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

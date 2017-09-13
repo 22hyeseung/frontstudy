@@ -1,1 +1,46 @@
-@import 'variable';
+@import "_variable";
+
+body {
+  font-family: $font-sans;
+  font-weight: $font-w-normal;
+  font-size: $font-size-S + 5px;
+  color: $color-font;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-family: $font-design;
+  font-size: $font-size-XXL * 2.5;
+}
+
+table {
+  border-radius: 5px;
+}
+
+th {
+  letter-spacing: 0.115em;
+  &:nth-of-type(1) {
+    text-align: center;
+  }
+}
+
+#add-btn {
+  float: right;
+  margin-bottom: 10px;
+}
+
+#edit-btn {
+  padding: 0 12px;
+}
+
+#del-btn {
+  padding: 0 12px;
+}
+
+#submit-btn {
+  padding: 0 12px;
+}
+
+#cancel-btn {
+  padding: 0 12px;
+}

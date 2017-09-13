@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const dbPath = path.join(__dirname, '/data/books.json');
+const dbPath = path.join(__dirname, '../data/books.json');
 
 // ======================================================================
 // CONFIGURATION
@@ -40,4 +40,4 @@ const updateBook = require('./routers/updateBook')(app, fs, dbPath);
 // DELETE book
 const deleteBook = require('./routers/deleteBook')(app, fs, dbPath);
 
-app.listen(3000, () => console.log('app listening on http://localhost:3000'));
+app.listen(3030, () => console.log('app listening on http://localhost:3030'));

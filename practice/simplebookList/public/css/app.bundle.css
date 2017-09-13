@@ -1,2 +1,47 @@
+@import url(https://fonts.googleapis.com/css?family=Libre+Barcode+39+Text|Slabo+27px);@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);@import url(https://fonts.googleapis.com/css?family=Lato:300,400);body {
+  font-family: "Lato", "Noto Sans KR", sans-serif;
+  font-weight: 300;
+  font-size: 19px;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-family: "Libre Barcode 39 Text", cursive;
+  font-size: 80px;
+}
+
+table {
+  border-radius: 5px;
+}
+
+th {
+  letter-spacing: 0.115em;
+}
+
+th:nth-of-type(1) {
+  text-align: center;
+}
+
+#add-btn {
+  float: right;
+  margin-bottom: 10px;
+}
+
+#edit-btn {
+  padding: 0 12px;
+}
+
+#del-btn {
+  padding: 0 12px;
+}
+
+#submit-btn {
+  padding: 0 12px;
+}
+
+#cancel-btn {
+  padding: 0 12px;
+}
 
 /*# sourceMappingURL=app.bundle.css.map*/
