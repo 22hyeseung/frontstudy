@@ -23,6 +23,30 @@
       "price": "5000",
       "editable": false,
       "status": ""
+    },
+    {
+      "id": 4,
+      "title": "1",
+      "author": "2",
+      "price": "3",
+      "editable": true,
+      "status": "new"
+    },
+    {
+      "id": 5,
+      "title": "2",
+      "author": "3",
+      "price": "4",
+      "editable": true,
+      "status": "new"
+    },
+    {
+      "id": 6,
+      "title": "3",
+      "author": "4",
+      "price": "5",
+      "editable": true,
+      "status": "new"
     }
   ]
 }
