@@ -9087,7 +9087,7 @@ function updateItem(newData, id) {
 function loadList() {
   _ajax2.default.get('/books').then(function (data) {
     BookList.books = JSON.parse(data);
-    // console.log(BookList.books);
+    console.log(BookList.books);
     render(BookList.books);
   });
 }

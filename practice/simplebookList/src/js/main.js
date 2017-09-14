@@ -87,7 +87,7 @@ function updateItem(newData, id) {
 function loadList() {
   AJAX.get('/books').then((data) => {
     BookList.books = (JSON.parse(data));
-    // console.log(BookList.books);
+    console.log(BookList.books);
     render(BookList.books);
   });
 }
