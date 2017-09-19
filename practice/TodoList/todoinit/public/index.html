@@ -15,21 +15,6 @@
   <link href="https://fonts.googleapis.com/css?family=Kanit:100,200,300" rel="stylesheet">
   <title>To Do List</title>
   <!-- clock -->
-  <script>
-    function getRealTime() {
-      var date = new Date();
-      var h = date.getHours();
-      var m = date.getMinutes();
-      var s = date.getSeconds();
-
-      if (h < 10) { h = '0' + h };
-      if (m < 10) { m = '0' + m };
-      if (s < 10) { s = '0' + s };
-
-      document.getElementById('clock').innerHTML = h + ':' + m + ':' + s;
-      setTimeout(getRealTime, 500);
-    }
-  </script>
 </head>
 
 <body onload='getRealTime()'>

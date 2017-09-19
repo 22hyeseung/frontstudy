@@ -1,5 +1,5 @@
 // Header
-(function (window, document) {
+(function(window, document) {
   var date = new Date();
 
   // 오늘 날짜 가져오는 함수
@@ -17,24 +17,33 @@
   var today = document.getElementById('today');
   today.append(getDateToday());
 
-  // 시계 - 실시간
-  // function getRealTime() {
-  //   var h = date.getHours();
-  //   var m = date.getMinutes();
-  //   var s = date.getSeconds();
+  시계 - 실시간
+  function getRealTime() {
+    var h = date.getHours();
+    var m = date.getMinutes();
+    var s = date.getSeconds();
 
-  //   if (h < 10) { h = '0' + h };
-  //   if (m < 10) { m = '0' + m };
-  //   if (s < 10) { s = '0' + s };
+    if (h < 10) {
+      h = '0' + h
+    }
+    ;
+    if (m < 10) {
+      m = '0' + m
+    }
+    ;
+    if (s < 10) {
+      s = '0' + s
+    }
+    ;
 
-  //   document.getElementById('clock').innerHTML = h + ':' + m + ':' + s;
-  //   setTimeout(getRealTime, 500);
-  // }
+    document.getElementById('clock').innerHTML = h + ':' + m + ':' + s;
+    setInterval(getRealTime, 500);
+  }
 
   // 진행률 로더
   moveProgressBar();
   //브라우저 크기 조절 시 다시 로드
-  $(window).resize(function () {
+  $(window).resize(function() {
     moveProgressBar();
   });
 
@@ -55,26 +64,26 @@
 
 
 //Contents
-(function (window, document) {
+(function(window, document) {
 
   // 할 일 입력란 focus
-  $(".input").focus(function () {
+  $(".input").focus(function() {
     $(this).addClass('focus-on');
     $(this).removeClass('focus-out');
   });
 
-  $(".input").focusout(function () {
+  $(".input").focusout(function() {
     $(this).addClass('focus-out');
     $(this).removeClass('focus-on');
   });
 
   // 할 일 입력창 온오프 버튼
-  $("#input-onoff-btn").mouseover(function () {
+  $("#input-onoff-btn").mouseover(function() {
     $(this).css('background-color', '#333');
     $(this).css('color', '#ccadaf');
   });
 
-  $("#input-onoff-btn").mouseout(function () {
+  $("#input-onoff-btn").mouseout(function() {
     $(this).css('background-color', '#ccadaf');
     $(this).css('color', '#eee');
   });
@@ -82,7 +91,7 @@
   function onoffBtnClick() {
     // + 버튼 클릭 이벤트
     function plusBtn() {
-      $("#input-onoff-btn").click(function () {
+      $("#input-onoff-btn").click(function() {
         $(".todo-input-group").css('display', 'block');
         $("#input-onoff-btn > i").attr('class', 'fa fa-times');
         $(this).addClass('close-btn');
@@ -91,7 +100,7 @@
     }
     // X 버튼 클릭 이벤트
     function removeBtn() {
-      $(".close-btn").click(function () {
+      $(".close-btn").click(function() {
         $(".todo-input-group").css('display', 'none');
         $("#input-onoff-btn > i").attr('class', 'fa fa-plus');
         $(this).removeClass('close-btn');
