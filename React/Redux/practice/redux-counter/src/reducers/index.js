@@ -17,7 +17,7 @@ import { combineReducers } from 'redux';
 */
 
 const reducers = combineReducers({
-  numberDatat: number,
+  numberData: number,
   colorData: color,
 });
 
