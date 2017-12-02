@@ -125,7 +125,7 @@ export default class ChatApp extends React.Component {
           {this.state.currentUser.name ? (
             <div>
               <img
-                className="image is-64x64"
+                className="image is-6 4x64"
                 src={this.state.currentUser.photourl}
                 alt=""
               />
