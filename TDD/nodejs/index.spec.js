@@ -21,4 +21,12 @@ describe('GET /users는, ', () => {
         });
     });
   });
+  describe('실패 시', () => {
+    it('limit이 숫자형이 아니면 400을 응답한다. ', (done) => {
+      request(app)
+        .get('/users?limit=two')
+        .expect(400)
+        .end(done);
+    });
+  });
 });

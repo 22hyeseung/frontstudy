@@ -10,7 +10,13 @@ const users = [
 app.use(morgan('dev'));
 
 app.get('/users', (req, res) => {
-  const limit = req.query.limit;
+  // limit이 설정되지 않은 경우 기본값 10 으로 할당한다.
+  req.query.limit = req.query.limit || 10;
+  const limit = parseInt(req.query.limit, 10); // '2' 문자열 -> 10진수 숫자 2
+  if (Number.isNaN(limit)) {
+    // parseInt 함수는 첫번째 파라미터 값이 정수가 아니면 NaN을 반환한다.
+    return res.status(400).end();
+  }
   res.json(users.slice(0, limit));
 });
 
