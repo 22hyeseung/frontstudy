@@ -1,0 +1,22 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "node test practice",
+  "main": "utils.js",
+  "scripts": {
+    "test": "mocha index.spec.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "huusz",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^4.1.0",
+    "should": "^13.2.0",
+    "supertest": "^3.0.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "morgan": "^1.9.0"
+  }
+}
