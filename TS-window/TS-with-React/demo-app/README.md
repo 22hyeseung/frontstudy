@@ -1,6 +1,6 @@
 # TS-in-React
 
-![TypeScript-React-Starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter)
+[TypeScript-React-Starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter)
 
 ## Install create-react-app
 
@@ -97,4 +97,38 @@ it('throws when the enthusiasm level is negative', () => {
     enzyme.shallow(<Hello name="Daniel" enthusiasmLevel={-1} />);
   }).toThrow();
 });
+```
+
+If you meet enzyme adapter error like the following:
+
+```bash
+Enzyme Internal Error: Enzyme expects an adapter to be configured, but found none. To
+          configure an adapter, you should call `Enzyme.configure({ adapter: new Adapter() })`
+          before using any of Enzyme's top level APIs, where `Adapter` is the adapter
+
+          corresponding to the library currently being tested. For example:
+
+          import Adapter from 'enzyme-adapter-react-15';
+
+          To find out more about this, see http://airbnb.io/enzyme/docs/installation/index.html
+```
+
+* [Check this Medium article: Configuring React 16 + Jest + Enzyme + Typescript](https://medium.com/@mateuszsokola/configuring-react-16-jest-enzyme-typescript-7122e1a1e6e8)
+
+* [Or this issue of github repo: Enzyme test fails](https://github.com/Microsoft/TypeScript-React-Starter/issues/76)
+
+We need `enzyme-adapter-react-16` package.
+
+```bash
+$ npm i -D enzyme-adapter-react-15 @types/enzyme-adapter-react-15
+```
+
+then, by creating a file called `setUpTests.ts` in the `src/` directory. and putting the following in:
+
+```ts
+// src/setUpTests.ts
+import { configure } from 'enzyme';
+import * as React15Adapter from 'enzyme-adapter-react-15';
+
+configure({ adapter: new React15Adapter() });
 ```
