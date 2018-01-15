@@ -93,3 +93,4 @@ ENV/
 # Rope project settings
 .ropeproject
 TDD/nodejs/node_modules/
+TS/node_modules/

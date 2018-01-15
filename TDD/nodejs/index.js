@@ -1,11 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const users = [
-  { id: 1, name: 'a' },
-  { id: 2, name: 'b' },
-  { id: 3, name: 'c' },
-];
+let users = [{ id: 1, name: 'a' }, { id: 2, name: 'b' }, { id: 3, name: 'c' }];
 
 app.use(morgan('dev'));
 
@@ -28,6 +24,15 @@ app.get('/users/:id', (req, res) => {
   const user = users.filter((user) => user.id === id)[0];
   if (!user) return res.status(404).end();
   res.json(user);
+});
+
+app.delete('/users/:id', (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  if (Number.isNaN(id)) {
+    return res.status(400).end();
+  }
+  users = users.filter((user) => user.id !== id);
+  res.status(204).end();
 });
 
 app.listen(8000, () => {
