@@ -93,4 +93,8 @@ ENV/
 # Rope project settings
 .ropeproject
 TDD/nodejs/node_modules/
+<<<<<<< HEAD
 TS/node_modules/
+=======
+TS-window/node_modules
+>>>>>>> eff785cefdac97b97f48d0a9337f4f099fc2122d
