@@ -1,7 +1,14 @@
-var Test = /** @class */ (function () {
-    function Test() {
-        console.log('test');
+var Student = /** @class */ (function () {
+    function Student(firstname, middleinitial, lastname) {
+        this.firstname = firstname;
+        this.middleinitial = middleinitial;
+        this.lastname = lastname;
+        this.fullname = firstname + " " + middleinitial + " " + lastname;
     }
-    return Test;
+    return Student;
 }());
-new Test();
+function greeter(person) {
+    return "Hello, " + person.firstname + " " + person.lastname;
+}
+var user = new Student('Jane', 'M.', 'User');
+document.body.innerHTML = greeter(user);

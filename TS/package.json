@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "transpile": "tsc"
+    "transpile": "tsc test.ts"
   },
   "keywords": [],
   "author": "",
